@@ -57,23 +57,33 @@ questions =    [
 
 
 function generateLogo(){
-    //var svgString="";
+    var svgString="";
+    //questions prompt with inquirer
     inquirer.prompt(questions).then((responses)=> {
     console.log(responses);
+    //setting the choices to variables
     let shapeChoice = responses["shape"];
     let shapeColor= responses["logocolor"];
     let text = responses["text"];
     let textColor = responses ["textcolor"];
-    //let userShape;
+    let userShape;
     console.log(text);
     console.log(textColor);
     console.log(shapeChoice);
-    console.log(shapeColor);})
-    // if ( shapeChoice === "Square"){
-    //     userShape= new Square ();
-    //     console.log(shapeChoice);
-    //     console.log(shapeColor);
+    console.log(shapeColor);
+    //if statements for the shape choices which pull in the shape object per the choice
+    if ( shapeChoice === "Square"){
+        userShape= new Square ();
     }
+    else if ( shapeChoice === "Square"){
+        userShape= new Square ();
+    }
+    else if ( shapeChoice === "Square"){
+        userShape= new Square ();
+    }
+    else (console.log ("Error in shape"))
+    userShape.setColor(shapeColor);
+})}
 
 
 

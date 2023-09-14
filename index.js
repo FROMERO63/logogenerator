@@ -1,23 +1,23 @@
-const { error } = require('console');
 const fs = require('fs');
 const inquirer = require('inquirer');
 const {Circle, Square, Triangle} = require("./lib/shapes");
 
-// class Svg{
-//     constructor(){
-//         this.textElement =''
-//         this.shapeElement = ''
-//     }
-//     render(){
-//         return `<svg version="1.1 xmlns="http://wwww.w3.org/2000/svg" width="300" height="200"/>`
-//     }
-//     setTextElement(text,textcolor){
-//         this.textElement = `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${textcolor}">${text}</text>`
-//     }
-//     setShapeelement(shape){
-//         this.shapeElement = shape.rendor()
-//     }
-// };
+// class SVG that takes in constructor and renders the file, the text tag, the shape
+class Svg{
+    constructor(){
+        this.textElement =''
+        this.shapeElement = ''
+    }
+    render(){
+        return `<svg version="1.1 xmlns="http://wwww.w3.org/2000/svg" width="300" height="200"/>`
+    }
+    setTextElement(text,textcolor){
+        this.textElement = `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${textcolor}">${text}</text>`
+    }
+    setShapeelement(shape){
+        this.shapeElement = shape.rendor()
+    }
+};
 
 questions =    [
     {
@@ -45,14 +45,14 @@ questions =    [
 
 
 
-// function writeToFile (fileName, data){
-//     fs.wrtieFile(fileName, data, function(err){
-//         if (err){
-//             return console.log(err);
-//         }
-//         console. log ("generated logo.svg")
-//     })
-// }
+function writeToFile (fileName, data){
+    fs.wrtieFile(fileName, data, function(err){
+        if (err){
+            return console.log(err);
+        }
+        console. log ("generated logo.svg")
+    })
+}
 
 
 
@@ -75,17 +75,25 @@ function generateLogo(){
     if ( shapeChoice === "Square"){
         userShape= new Square ();
     }
-    else if ( shapeChoice === "Square"){
-        userShape= new Square ();
+    else if ( shapeChoice === "Circle"){
+        userShape= new Circle ();
     }
-    else if ( shapeChoice === "Square"){
-        userShape= new Square ();
+    else if ( shapeChoice === "Triangle"){
+        userShape= new Triangle ();
     }
     else (console.log ("Error in shape"))
     userShape.setColor(shapeColor);
+
+    // creating the SVG and then implementing the choices
+    var svg = new Svg ();
+    svg.setTextElement(text, textColor);
+    svg.setShapeelement(userShape);
+    // rendering the string that will go into the svg file
+    svgString = svg.render();
+    //writing file with the svgstring as the data to put into the file
+    writeToFile( 'logo.svg',svgString);
 })}
 
-
-
+//calls the generate logo function
 generateLogo();
 

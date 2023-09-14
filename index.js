@@ -1,20 +1,23 @@
 const { error } = require('console');
 const fs = require('fs');
 const inquirer = require('inquirer');
-const {Circle, Square, Triangle} = require("./lib/shapes.js");
-{}
-class Svg{
-    constructor(){
-        this.textElement =''
-        this.shapeElement = ''
-    }
-    render(){
-        return `<svg version="1.1 xmlns="http://wwww.w3.org/2000/svg" width="300" height="200"/>`
-    }
-    setTextElement(text,color){
-        this.textElement = `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${textcolor}">${text}</text>`
-    }
-}
+const {Circle, Square, Triangle} = require("./lib/shapes");
+
+// class Svg{
+//     constructor(){
+//         this.textElement =''
+//         this.shapeElement = ''
+//     }
+//     render(){
+//         return `<svg version="1.1 xmlns="http://wwww.w3.org/2000/svg" width="300" height="200"/>`
+//     }
+//     setTextElement(text,textcolor){
+//         this.textElement = `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${textcolor}">${text}</text>`
+//     }
+//     setShapeelement(shape){
+//         this.shapeElement = shape.rendor()
+//     }
+// };
 
 questions =    [
     {
@@ -43,17 +46,36 @@ questions =    [
 
 
 // function writeToFile (fileName, data){
-//     return fs.writeFileSync(path.join(process.cwd(),fileName),data);
+//     fs.wrtieFile(fileName, data, function(err){
+//         if (err){
+//             return console.log(err);
+//         }
+//         console. log ("generated logo.svg")
+//     })
 // }
 
-function logoChoices(){
+
+
+function generateLogo(){
+    //var svgString="";
     inquirer.prompt(questions).then((responses)=> {
     console.log(responses);
-    console.log("Generated logo.svg");
-    generateLogo();
-  //  writeToFile("logo.sgv", generateLogo({...responses}))
-    })}
+    let shapeChoice = responses["shape"];
+    let shapeColor= responses["logocolor"];
+    let text = responses["text"];
+    let textColor = responses ["textcolor"];
+    //let userShape;
+    console.log(text);
+    console.log(textColor);
+    console.log(shapeChoice);
+    console.log(shapeColor);})
+    // if ( shapeChoice === "Square"){
+    //     userShape= new Square ();
+    //     console.log(shapeChoice);
+    //     console.log(shapeColor);
+    }
 
 
-logoChoices();
+
+generateLogo();
 

@@ -9,13 +9,13 @@ class Svg{
         this.shapeElement = ''
     }
     render(){
-        return `<svg version="1.1 xmlns="http://wwww.w3.org/2000/svg" width="300" height="200"/>`
+        return `<svg xmlns="http://wwww.w3.org/2000/svg" version="1.1" width="300" height="200">${this.shapeElement}${this.textElement}</svg>`
     }
     setTextElement(text,textcolor){
         this.textElement = `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${textcolor}">${text}</text>`
     }
     setShapeelement(shape){
-        this.shapeElement = shape.rendor()
+        this.shapeElement = shape.render()
     }
 };
 
@@ -45,8 +45,8 @@ questions =    [
 
 
 
-function writeToFile (fileName, data){
-    fs.wrtieFile(fileName, data, function(err){
+function writeToFile (fileName, data){ 
+    fs.writeFile(fileName, data, function(err){
         if (err){
             return console.log(err);
         }
@@ -66,6 +66,7 @@ function generateLogo(){
     let shapeColor= responses["logocolor"];
     let text = responses["text"];
     let textColor = responses ["textcolor"];
+    let filePath= "logo.svg";
     let userShape;
     console.log(text);
     console.log(textColor);
@@ -90,8 +91,9 @@ function generateLogo(){
     svg.setShapeelement(userShape);
     // rendering the string that will go into the svg file
     svgString = svg.render();
+    console.log(svgString);
     //writing file with the svgstring as the data to put into the file
-    writeToFile( 'logo.svg',svgString);
+    writeToFile( filePath, svgString);
 })}
 
 //calls the generate logo function

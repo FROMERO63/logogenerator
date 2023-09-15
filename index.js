@@ -9,7 +9,7 @@ class Svg{
         this.shapeElement = ''
     }
     render(){
-        return `<svg xmlns="http://wwww.w3.org/2000/svg" version="1.1" width="300" height="200">${this.shapeElement}${this.textElement}</svg>`
+        return `<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="300" height="200">${this.shapeElement}${this.textElement}</svg>`
     }
     setTextElement(text,textcolor){
         this.textElement = `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${textcolor}">${text}</text>`
